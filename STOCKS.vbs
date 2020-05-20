@@ -60,15 +60,21 @@ For Each ws In ThisWorkbook.Worksheets
 
       ' Print the Credit Card Brand in the Summary Table
       Range("I" & Summary_Table_Row).Value = Ticker
-
+      Range("I" & 1).Value = "Ticker"
       ' Print the Brand Amount to the Summary Table
       Range("J" & Summary_Table_Row).Value = Start
-      ' Print the Brand Amount to the Summary Table
+      Range("J" & 1).Value = "Start of Year"
+     
+     
+     ' Print the Brand Amount to the Summary Table
       Range("K" & Summary_Table_Row).Value = EndYear
+       Range("K" & 1).Value = "End of Year"
        ' Print the Brand Amount to the Summary Table
       Range("L" & Summary_Table_Row).Value = Vol
+      Range("L" & 1).Value = "Total Volume"
     ' Print the Brand Amount to the Summary Table
       Range("M" & Summary_Table_Row).Value = PerChange
+      Range("M" & 1).Value = "Percent Change"
       ' Add one to the summary table row
       Summary_Table_Row = Summary_Table_Row + 1
       
@@ -108,6 +114,9 @@ Dim Max As Double
 Dim Min As Double
 Dim MaxVol As Double
 
+Dim maxtick As String
+Dim mintick As String
+Dim voltick As String
 
 Max = WorksheetFunction.Max(Columns(13))
 Min = WorksheetFunction.Min(Columns(13))
@@ -120,16 +129,22 @@ MaxVol = WorksheetFunction.Max(Columns(12))
 For i = 2 To Cells(Rows.Count, "M").End(xlUp).Row - 1
 
   If Cells(i, 13) = Max Then
+  maxtick = Cells(i, 9).Value
   
-    Cells(i, 14) = "Greatest % increase"
+  Range("N" & 1).Value = "Greatest % Increase"
+  Cells(2, 14).Value = maxtick
     
   ElseIf Cells(i, 13) = Min Then
+  mintick = Cells(i, 9).Value
   
-     Cells(i, 14) = "Greatest % decrease"
+  Range("O" & 1).Value = "Greatest % decrease"
+  Cells(2, 15).Value = mintick
      
   ElseIf Cells(i, 12) = MaxVol Then
+  voltick = Cells(i, 9).Value
   
-      Cells(i, 15) = "Greatest total volume"
+  Range("P" & 1).Value = "Greatest Total Volume"
+  Cells(2, 16).Value = voltick
 
 End If
 
